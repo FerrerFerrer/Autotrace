@@ -1,0 +1,35 @@
+.big-image {
+    margin: 0; 
+    background:  linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(165, 165, 165, 0.469)
+      ),url("/assets/img/Danios.jpg") ;
+   
+    background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+    background-position: center center;  
+}
+
+.component-transparent {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+.card-body
+{
+    background: rgb(181,206,208);
+    background: linear-gradient(90deg, rgba(181,206,208,0.846673703661152) 100%, rgba(121,143,139,0.6029762246695554) 100%, rgba(0,212,255,0) 100%, rgba(166,194,192,0.04555325548188027) 100%);
+border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+
+}
+
+.card-header{
+    background: rgb(181,206,208);
+    background: linear-gradient(90deg, rgba(181,206,208,0.846673703661152) 100%, rgba(121,143,139,0.6029762246695554) 100%, rgba(0,212,255,0) 100%, rgba(166,194,192,0.04555325548188027) 100%);
+}
+
+.semi-transparente{
+    opacity: 0.9;
+  }

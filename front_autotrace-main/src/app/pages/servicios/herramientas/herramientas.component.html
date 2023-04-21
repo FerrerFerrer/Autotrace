@@ -1,0 +1,94 @@
+<div class="content-wrapper big-image">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <div class="form-inline">
+                        <h1 class="m-0" style="color: white;">Herramientas</h1>
+                        <button type="button" class="btn btn-outline-light ml-2" (click)="abrirModalAgregar()"><i
+                                class="fas fa-plus-circle"></i></button>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="" style="color: whitesmoke;">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="" style="color: whitesmoke;">Servicios</a></li>
+                        <li class="breadcrumb-item"><a href="" style="color: whitesmoke;">Herramientas</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <h2 class="text-center display-6" style="color: white;">Buscar</h2>
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <form [formGroup]="form" (ngSubmit)="filtroPatron()">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-md"
+                            placeholder="Escribe un termino de búsqueda" formControlName="patronBusqueda">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-md btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+    <br>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row" *ngIf="mostrarTabla">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: gainsboro;">
+                            <h3 class="card-title">Herramientas</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptions"
+                                    class="table table-striped table-bordered table-sm row-border hover"
+                                    style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Clave</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Comentario</th>
+                                            <th class="text-center">Activo</th>
+                                            <th class="text-center">Editar</th>
+                                            <th class="text-center">Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of listaHerramientas">
+                                            <td class="text-center">{{row.cveHerramienta}}</td>
+                                            <td class="text-center">{{row.nombre}}</td>
+                                            <td class="text-left">{{row.comentario}}</td>
+                                            <td class="text-center">{{row.activo}}</td>
+                                            <td class="text-center"><button type="button" class="btn btn-outline-dark"
+                                                    (click)="abrirModalEditar(row)"><i class="far fa-edit"></i></button>
+                                            </td>
+                                            <td class="text-center"><button type="button" class="btn btn-outline-dark"
+                                                    (click)="eliminarRegistro(row)"><i
+                                                        class="far fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" ></p></ngx-spinner>
+
+</div>

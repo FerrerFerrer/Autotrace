@@ -1,0 +1,207 @@
+<!-- Content Header (Page header) -->
+<div class="content-wrapper big-image">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0" style="color: white;">
+						Mapa de distribución
+					</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="" style="color: white;">Inicio</a>
+						</li>
+						<li class="breadcrumb-item active" style="color: whitesmoke;">Mapa de distribución</li>
+					</ol>
+				</div>
+				<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" name="spinMapaDistribucion" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" ></p></ngx-spinner>
+			</div>
+		</div>
+	</div>
+
+	<section class="content">
+
+		<div class="col-12">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="row">
+							<div id="map" class="card-body"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form [formGroup]="form" role="form" (ngSubmit)="filtroMapaDsitribucion()">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>Tipo de servicio</label>
+									<select class="form-control" formControlName="tipoServicio">
+										<option value="">Seleccione el tipo de servicio</option>
+										<option *ngFor="let tiposervicio of tipoServicioList"
+											value="{{tiposervicio.idtipoServicio}}">
+											{{tiposervicio.tipoServicio}}
+										</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>Estado del proceso</label>
+									<select class="form-control" formControlName="estadoProceso">
+										<option value="">Seleccione el estado de proceso</option>
+										<option *ngFor="let estadoProceso of estadoProcesoList"
+											value="{{estadoProceso.idestadoProceso}}">
+											{{estadoProceso.estadoProceso}}
+										</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>Fechas de inicio:</label>
+									<input formControlName="fechaIni" type="date" class="form-control float-right"
+										id="reservation">
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>Fecha Fin</label>
+									<input formControlName="fechaFin" type="date" class="form-control float-right"
+										id="reservation">
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>Geocerca</label>
+									<select multiple="" class="form-control" formControlName="geocercaControl">
+										<option *ngFor="let geocercas of geocercasList"
+											value="{{geocercas.idgeocerca}}">
+											{{geocercas.geocerca}}
+										</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+								<div class="form-group">
+									<label>VINS</label>
+									<textarea formControlName="vins" class="form-control" rows="3"
+										placeholder="Enter ..."></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-sm-12 col-md-6 col-lg-4 col-lx-3 pb-3">
+						<button type="submit" class="btn btn-block bg-light"> <i
+								class="fa fa-search mr-2"></i>Buscar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+
+	<section class="content">
+		<div class="container-fluid" *ngIf="mostrarTabla">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-header" style="background-color: gainsboro;">
+							<h3 class="card-title"></h3>
+							<button type="button" class="btn btn-outline-dark" (click)="
+                            abrirModalMuiltiplePlacard()">
+								<i class="fas fa-barcode"></i>
+								Generar placards de los resultados
+							</button>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table [dtOptions]="dtOptions" datatable
+									class="table table-striped table-bordered table-sm row-border hover"
+									style="width: 100%;">
+									<thead>
+										<tr>
+											<th class="text-center">Detalles</th>
+											<th class="text-center">Placard</th>
+											<th class="text-center">Vin Code</th>
+											<th class="text-center">Modelo</th>
+											<th class="text-center">Fecha servicio</th>
+
+											<th class="text-center">Tipo de servicio</th>
+											<th class="text-center">Estado</th>
+											<th class="text-center">Fecha de ingreso
+												<button type="button" class="btn btn-outline-dark"><i
+														class="far fa-edit" (click)="abrirModalEditarFechaIngreso()"></i></button>
+											</th>
+											<th class="text-center">Estatus DFY
+												<button type="button" class="btn btn-outline-dark"><i
+														class="far fa-edit" (click)="abrirModalEditarEstadoDFY()"></i></button>
+											</th>
+											<th class="text-center">Estatus Vtims
+												<button type="button" class="btn btn-outline-dark"><i
+														class="far fa-edit" (click)="abrirModalEditarEstadoVtims()"></i></button>
+											</th>
+											<th class="text-center">Estatus del proceso
+												<button type="button" class="btn btn-outline-dark"><i
+														class="far fa-edit" (click)="abrirModalEditarEstadoProceso()"></i></button>
+											</th>
+											<th class="text-center">Geocerca</th>
+											<th class="text-center">Cajón</th>
+											<th class="text-center">Fila</th>
+											<th class="text-center">Bloque</th>
+											<th class="text-center">Patio</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let listasTabla of listaFiltroTabla ">
+											<td class="text-center"><button type="button" class="btn btn-outline-dark"
+													(click)="abrirModalHistorialVin(listasTabla.vinCode)"><i
+														class="fas fa-eye"></i></button>
+											</td>
+											<td class="text-center"><button type="button" class="btn btn-outline-dark"
+													(click)="abrirModalDescargarPlacard(listasTabla.vinCode)"><i
+														class="fas fa-barcode"></i></button>
+											</td>
+											<td>{{listasTabla.vinCode}}</td>
+											<td class="text-center">{{listasTabla.modelo}}</td>
+											<td class="text-center">{{listasTabla.fechaEstado | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+
+											<td class="text-center">{{listasTabla.tipoServicio}}</td>
+											<td class="text-center">{{listasTabla.estado}}</td>
+											<td class="text-center">{{listasTabla.fechaIngreso | date: 'yyyy-MM-ddHH:mm:ss'}}</td>
+											<td class="text-center">{{listasTabla.DFY}}</td>
+											<td class="text-center">{{listasTabla.Vtims}}</td>
+											<td class="text-center">{{listasTabla.estadoProceso}}</td>
+											<td class="text-center">{{listasTabla.geocerca}}</td>
+											<td class="text-center">{{listasTabla.cajon}}</td>
+											<td class="text-center">{{listasTabla.fila}}</td>
+											<td class="text-center">{{listasTabla.bloque}}</td>
+											<td class="text-center">{{listasTabla.patio}}</td>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" ></p></ngx-spinner>
+
+</div>
+

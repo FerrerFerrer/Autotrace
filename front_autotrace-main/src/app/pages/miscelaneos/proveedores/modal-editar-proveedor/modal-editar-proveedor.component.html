@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="editar()">
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title">{{tituloModal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="InputIdProveedor">Id Proveedor</label>
+            <input type="text" class="form-control" formControlName="InputIdProveedor" id="InputIdProveedor" placeholder="Escribe el nombre del proveedor">
+        </div>
+        <div class="form-group">
+            <label for="InputNombre">Nombre</label>
+            <input type="text" class="form-control" formControlName="InputNombre" id="InputNombre" placeholder="Escribe el nombre del proveedor"
+            (keypress)="validacionNoCaracteresEspeciales($event)"maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="InputCodigoSPLC">Codigo SPLC</label>
+            <input type="text" class="form-control" formControlName="InputCodigoSPLC" id="InputCodigoSPLC" placeholder="Escribe el codigo SPLC"
+            (keypress)="validacionNoCaracteresEspeciales($event)"maxlength="20">
+        </div>
+        <div class="form-group">
+            <label>Cliente</label>
+            <select class="form-control" formControlName="InputIdCliente">
+                <option>Seleccione cliente</option>
+                <option *ngFor="let cliente of listClientes"
+					value="{{cliente.idcliente}}">
+					{{cliente.cliente}}
+				</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Agregar</button>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->

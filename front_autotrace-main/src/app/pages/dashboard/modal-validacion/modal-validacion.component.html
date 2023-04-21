@@ -1,0 +1,78 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">Proceso de carga</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+<div class="modal-body">
+    <div class="row semi-transparente">
+        <div class="col-sm-12">
+            <div class="form-group text-center font-weight-bold">
+                <h3><strong> Procesados: {{fromParent.procesados}}</strong></h3>
+            </div>
+            <div class="form-group text-center font-weight-bold">
+                <h3><strong> Almacenados: {{fromParent.almacenados}}</strong></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="background-color: gainsboro;">
+                    <h3 class="card-title">No almacenados</h3>
+                </div>
+                <div class="card-body">
+                    <table datatable [dtOptions]="dtOptions"
+                        class="table table-striped table-bordered table-sm row-border hover" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">VIN</th>
+                                <th class="text-center">Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vin of fromParent.tablaNoAlmacenados">
+                                <td class="text-left">{{vin.vin}}</td>
+                                <td class="text-left">{{vin.validacion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="background-color: gainsboro;">
+                    <h3 class="card-title">Almacenados</h3>
+                </div>
+                <div class="card-body">
+                    <table datatable [dtOptions]="dtOptions"
+                        class="table table-striped table-bordered table-sm row-border hover" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">VIN</th>
+                                <th class="text-center">Model</th>
+                                <th class="text-center">Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vin of fromParent.tablaAlmacenados">
+                                <td class="text-left">{{vin.vin}}</td>
+                                <td class="text-center">{{vin.model}}</td>
+                                <td class="text-center">{{vin.mode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+</div>

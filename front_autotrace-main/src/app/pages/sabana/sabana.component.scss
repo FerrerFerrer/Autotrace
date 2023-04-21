@@ -1,0 +1,104 @@
+.sabana{
+  // display: flex;;
+  // justify-content: center;
+}
+
+.subir{
+  background-color: azure;
+}
+
+.big-image {
+  margin: 0;
+  background:  linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(165, 165, 165, 0.469)
+    ),url("/assets/img/Geolocalizacion.jpg") ;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  background-position: center center;
+}
+
+
+.sabana >* {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+
+.optionButton {
+  width: 100%;
+  display: block;
+  float: left;
+  // text-align: center;
+  margin: 0.5em 0;
+}
+
+.myButton{
+  appearance: none;
+    width: auto;
+    /* height: 1.5em; */
+    padding: 1em 2em;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.myButton:hover {
+  background-color: lightgray;
+}
+
+
+
+// opciones 1
+.opcion{
+  position: relative;
+  padding: 10px 30px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 3px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  background-color: #ffffff;
+  border: none;
+  // border-bottom: 5px solid #ffffff;
+  text-shadow: 0px -2px #ffffff;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.opcion:hover {
+  background-color: #dae0e5;
+}
+
+.opcion:active {
+  transform: translateY(-1px);
+}
+
+
+
+.descargar {
+  position: relative;
+  padding: 10px 30px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 3px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  background-color: #ffffff;
+  border: none;
+  // border-bottom: 5px solid #ffffff;
+  text-shadow: 0px -2px #ffffff;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+ }
+
+ .descargar:hover, button:active {
+  background-color: #dae0e5;
+ }
+
+
+

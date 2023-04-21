@@ -1,0 +1,80 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+
+<form [formGroup]="form">
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+            <div class="form-group">
+                <label for="">Servicio/Descripción</label>
+                <input type="text" class="form-control" formControlName="tipoServicio" id="" placeholder="Servicio/Descripción" maxlength="100" required>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+            <div class="form-group">
+                <label>Estado</label>
+
+                <!-- 'Temporal','Requisición','Cotización','Aprobado' -->
+                <!-- <option value="0">Temporal</option>
+                <option value="1">Requisición-1</option> -->
+                <select class="form-control" required formControlName="estado">
+                    <option selected disabled>Seleccione una opción</option>
+                    <option value="Temporal">Temporal</option>
+                    <option value="Requisición">Requisición</option>
+                    <option value="Cotización">Cotización</option>
+                    <option value="Aprobado">Aprobado</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" formControlName="esServicioSistema">
+                <label class="form-check-label">Servicio de sistema</label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="form-group">
+                <label>Observaciones</label>
+                <textarea class="form-control" rows="3" formControlName="observaciones" minlength="1" maxlength="255"
+                    placeholder="Escribe una observación"></textarea>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label for="">Tarifa</label>
+                <input type="number" formControlName="tarifa" step="0.01" class="form-control" id="" placeholder="0.00">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label>Moneda</label>
+                <select class="form-control" required formControlName="moneda">
+                    <option selected>Seleccione una opción</option>
+                    <option value="MXN">MXN</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label class="col-form-label" for="">Fecha de expiración</label>
+                <input type="date" formControlName="fechaExpiracion" class="form-control" id="" placeholder="" />
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger" (click)="agregar()">Guardar</button>
+</div>

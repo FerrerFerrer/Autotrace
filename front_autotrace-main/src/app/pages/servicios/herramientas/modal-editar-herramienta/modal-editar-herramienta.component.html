@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="editar()">
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title">{{tituloModal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="">Clave</label>
+                    <input type="text" class="form-control" formControlName="InputClave" id="" placeholder="Clave">
+                    <input type="hidden" formControlName="InputClaveGuardado">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" formControlName="InputNombre" id="" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label>Comentario</label>
+                    <textarea class="form-control" rows="3" formControlName="InputComentario" minlength="1" maxlength="100"
+                        placeholder="Escribe una descripción/comentario"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label>Activo</label>
+                    <select class="form-control" formControlName="InputActivo">
+                        <option value="" selected>Seleccione una opcion</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner>

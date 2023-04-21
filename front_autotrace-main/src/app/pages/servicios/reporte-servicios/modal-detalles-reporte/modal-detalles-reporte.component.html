@@ -1,0 +1,81 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body row">
+                    <div id="map-menu-geocercas" classs="" style="width: 100%; height: 500px;" class="card-body contextmenu">
+                    </div>
+                    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" name="spinMapa" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" ></p></ngx-spinner>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="mostrarTable">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="background-color: gainsboro;">
+                    <h3 class="card-title">Detalles de reporte</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions"
+                            class="table table-striped table-bordered table-sm row-border hover"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">VIN Code</th>
+                                    <th class="text-center">Fecha de servicio</th>
+                                    <th class="text-center">Geocerca</th>
+                                    <th class="text-center">Destino final</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Distribuidor</th>
+                                    <th class="text-center">Tipo de servicio</th>
+                                    <th class="text-center">Estado de la unidad</th>
+                                    <th class="text-center">Fecha de liberación</th>
+                                    <th class="text-center">Usuario</th>
+                                    <th class="text-center">Cajón</th>
+                                    <th class="text-center">Fila</th>
+                                    <th class="text-center">Bloque</th>
+                                    <th class="text-center">Patio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of listDetallesReporte">
+                                    <td class="text-center">{{row.vin}}</td>
+                                    <td class="text-center">{{row.fechaInicio | date: 'yyyy-MM-dd'}}</td>
+                                    <td class="text-center">{{row.geocerca}}</td>
+                                    <td class="text-center">{{row.destinoFinal}}</td>
+                                    <td class="text-center">{{row.model}}</td>
+                                    <td class="text-center">{{row.model}}</td>
+                                    <td class="text-center">{{row.tipoServicio}}</td>
+                                    <td class="text-center">{{row.estado}}</td>
+                                    <td class="text-center">{{row.fechaLiberacion | date: 'yyyy-MM-dd'}}</td>
+                                    <td class="text-center">{{row.idusuario}}</td>
+                                    <td class="text-center">{{row.cajon}}</td>
+                                    <td class="text-center">{{row.fila}}</td>
+                                    <td class="text-center">{{row.bloque}}</td>
+                                    <td class="text-center">{{row.patio}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+</div>

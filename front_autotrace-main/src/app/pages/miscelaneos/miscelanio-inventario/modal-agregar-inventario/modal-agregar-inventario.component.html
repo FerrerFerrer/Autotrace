@@ -1,0 +1,114 @@
+<form [formGroup]="form" (ngSubmit)="agregar()">
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title">{{tituloModal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Manual/Etiqueta</label>
+                    <input type="text" class="form-control" formControlName="InputManualEtiqueta" 
+                        id="" maxlength="10" placeholder="Manual/Etiqueta" required
+                        (keypress)="validacionNoCaracteresEspeciales($event)">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label>Tipo de inventario</label>
+                    <select class="form-control" formControlName="InputTipoInventario" required>
+                        <option value ="" selected>Seleccione una opción</option>
+                        <option *ngFor="let row of listaTipoInventario" value="{{row.cveTipoInventario}}">
+                            {{row.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Body Model</label>
+                    <input type="text" class="form-control"     
+                        formControlName="InputBodyModel" id="" maxlength="10" 
+                        placeholder="Restraint System" required
+                        (keypress)="validacionNoCaracteresEspeciales($event)">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Numero parte</label>
+                    <input type="text" class="form-control" formControlName="InputNumeroParte" id="" maxlength="10" placeholder="Brakes" required>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Inicial</label>
+                    <input type="number" class="form-control" formControlName="InputInicial" 
+                        id="" placeholder="Inicial" required>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Descontar</label>
+                    <input type="number" formControlName="InputDescontar" class="form-control" id="" placeholder="Descontar">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Recibida</label>
+                    <input type="number" formControlName="InputRecibida" class="form-control" id="" placeholder="Recibida">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Enviada</label>
+                    <input type="number" formControlName="InputEnviada" class="form-control" id="" placeholder="Enviada">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Consumido</label>
+                    <input type="number" formControlName="InputConsumido" class="form-control" id="" placeholder="Consumido">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Actual</label>
+                    <input type="number" formControlName="InputActual" class="form-control" id="" placeholder="Actual">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Total</label>
+                    <input type="number" formControlName="InputTotal" class="form-control" id="" placeholder="Total">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="form-group">
+                    <label for="">Año</label>
+                    <input type="number" formControlName="InputAnio" class="form-control" min="1900" max="2099" step="1" value="2021" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+    
+                <div class="form-group">
+                    <label>Localidad</label>
+                    <select class="form-control" formControlName="InputLocalidad" required>
+                        <option value="" selected>Seleccione una opción</option>
+                        <option *ngFor="let row of listaLocalidades" value="{{row.idlocalidad}}">
+                            {{row.localidad}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+    </div>
+</form>

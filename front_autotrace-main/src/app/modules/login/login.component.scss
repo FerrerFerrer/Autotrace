@@ -1,0 +1,45 @@
+.login-page {
+    background-image: url('/assets/img/Geolocalizacion.jpg');
+    background-position: center center;
+    background-size: cover;
+}
+
+.login-card-body,
+
+
+.login-box {
+  background-color: rgba(159, 36, 36, 0.4);
+    border-color: rgb(0, 0, 0);
+    background-position: center center;
+    background-size: cover;
+    color: white
+}
+
+.component-transparent {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.login-box,
+a {
+    color: white;
+}
+
+.social-auth-links,
+a {
+    color: black;
+}
+
+.link-pass{
+  color: white;
+}
+
+
+.link-reg{
+  color: white;
+}
+
+.semi-transparente{
+    opacity: 0.5;
+  }

@@ -1,0 +1,18 @@
+<div class="chartjs-container">
+    <canvas baseChart #reportPage
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        [plugins]="lineChartPlugins"
+        (chartHover)="chartHovered($event)" 
+        (chartClick)="chartClicked($event)">
+    </canvas>
+</div>
+<div class="row justify-content-end">
+    <button class="btn btn-secondary" type="button" (click)="exportarGrafica()">
+        <i class="fas fa-file-pdf"></i> Exportar gráfica
+    </button>
+</div>

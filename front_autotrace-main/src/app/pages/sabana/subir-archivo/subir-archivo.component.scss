@@ -1,0 +1,88 @@
+.myButton {
+  position: relative;
+  padding: 10px 30px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 3px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  background-color: #ffffff;
+  border: none;
+  // border-bottom: 5px solid #ffffff;
+  text-shadow: 0px -2px #ffffff;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.myButton:hover,
+button:active {
+  background-color: #dae0e5;
+  cursor: pointer;
+}
+
+.opcionArchivo {
+  background-color: transparent;
+  border: none;
+}
+
+.up{
+  width: 100%;
+  display: block;
+}
+
+//  tabla
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  margin: 45px;
+  width: 480px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: 15px;
+  font-weight: normal;
+  padding: 8px;
+  background: #b9c9fe;
+  border-top: 4px solid #aabcfe;
+  border-bottom: 1px solid #fff;
+  color: #039;
+}
+
+td {
+  padding: 8px;
+  background: #e8edff;
+  border-bottom: 1px solid #fff;
+  color: #669;
+  border-top: 1px solid transparent;
+}
+
+tr:hover td {
+  background: #d0dafd;
+  color: #339;
+}
+
+.contenedorFijo{
+  width: 100%;
+  overflow-x: auto;
+}
+
+.contenedorFijo::-webkit-scrollbar{
+  background: #b20022;
+}
+
+.contenedorFijo::-webkit-scrollbar-thumb{
+  background: red;
+  border-bottom-right-radius: 1em;
+}
+
+.contenedorFijo >div{
+  width: 100%;
+}
+
+.contenedorFijo > div > table {
+  margin: 0;
+  overflow-x: scroll;
+}

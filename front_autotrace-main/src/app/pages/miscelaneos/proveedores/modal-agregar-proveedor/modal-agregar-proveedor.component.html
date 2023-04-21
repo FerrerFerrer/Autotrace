@@ -1,0 +1,57 @@
+<form [formGroup]="form" (ngSubmit)="agregar()">
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title">{{tituloModal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label for="InputNombre">Nombre</label>
+                    <input type="text" class="form-control" formControlName="InputNombre" id="InputNombre"
+                        placeholder="Escribe el nombre del proveedor"
+                        (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="100"
+                        >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label for="InputCodigoSPLC">Codigo SPLC</label>
+                    <input type="text" class="form-control" formControlName="InputCodigoSPLC" id="InputCodigoSPLC"
+                        placeholder="Escribe el codigo SPLC"
+                        (keypress)="validacionNoCaracteresEspeciales($event)"maxlength="20">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select class="form-control" formControlName="InputIdCliente">
+                        <option value="">Seleccione cliente</option>
+                        <option *ngFor="let cliente of listClientes" value="{{cliente.idcliente}}">
+                            {{cliente.cliente}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label>Localidades</label>
+                    <select multiple="" class="form-control" formControlName="localidades">
+                        <option *ngFor="let row of localidades" value="{{row.idlocalidad}}">
+                            {{row.localidad}}
+                        </option>
+                    </select>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Agregar</button>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->

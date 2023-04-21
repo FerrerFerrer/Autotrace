@@ -1,0 +1,53 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="agregar()">
+<div class="modal-body">
+    <div class="form-group">
+        <label for="">Dígito</label>
+        <input type="text" class="form-control" formControlName="claveDigito" 
+            id="" placeholder="Dígito" maxlength="3"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Driver Type</label>
+        <input type="text" class="form-control" formControlName="driverType" id=""
+            placeholder="Driver Type" maxlength="100"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Brand</label>
+        <input type="text" class="form-control" formControlName="brand" 
+            id="" placeholder="Brand" maxlength="100"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Series</label>
+        <input type="text" class="form-control" formControlName="series" 
+            id="" placeholder="Series" maxlength="100"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Driver Position</label>
+        <input type="text" class="form-control" formControlName="driverPosition" 
+            id="" placeholder="Driver Position" maxlength="100"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+    <div class="form-group">
+        <label for="">Body Type Cab</label>
+        <input type="text" class="form-control" formControlName="bodyTypeCab" 
+            id="" placeholder="Body Type Cab" maxlength="100"
+            (keypress)="validacionNoCaracteresEspeciales($event)">
+    </div>
+</div>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+    <button type="submit" class="btn btn-danger" >Agregar</button>
+</div>
+</form>

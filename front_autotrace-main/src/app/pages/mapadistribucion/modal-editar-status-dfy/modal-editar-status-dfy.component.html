@@ -1,0 +1,29 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="form-group">
+        <label>Status DFY</label>
+        <select class="form-control" formControlName="estadoDFY">
+            <option value="" selected>Seleccione una opción</option>
+            <option value="S2">S2 - HOLD</option>
+            <option value="S3">S3 - DISPONIBLE</option>
+            <option value="S5">S5 - CORTADO DE MANIFIESTO</option>
+            <option value="S6">S6 - SALIDA</option>
+            <option value="S9">S9 - INSPECCIÓN A PIE DE BUQUE</option>
+        </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger" (click)="editar()">Guardar cambios</button>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-pulse" [fullScreen] = "true"> <ngb-progressbar type="success" [value]="">
+</ngb-progressbar></ngx-spinner>

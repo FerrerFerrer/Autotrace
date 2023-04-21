@@ -1,0 +1,133 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Id Usuario</label>
+                    <input type="text" class="form-control" formControlName="idusuario" id="" placeholder="Id Usuario"
+                    (keypress)="validacionNoCaracteresEspeciales($event)"
+                        maxlength="10">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" formControlName="usuario" id="" placeholder="Nombre"
+                        maxlength="200" (keypress)="validacionNoCaracteresEspeciales($event)">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input #password type="password" class="form-control" formControlName="password" id=""
+                        placeholder="Password" (keyup)="validarPassword()" maxlength="16" minlength="8">
+                    <span (click)="password.type=password.type=='password'?'text':'password'"
+                        class="fa fa-fw field-icon toggle-password"
+                        [ngClass]="(password.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                        <div class="info-pass">
+                          Se Requiere:Mínimo de 8 caracteres y máximo 16 caracteres, Al menos deberá incluir un carácter especial, una letra en mayúsculas y un dígito.
+                        </div>
+                    <div class="red-icon"
+                        *ngIf="this.form.get('password')?.invalid && this.form.get('password')?.touched">Verificar Contraseña
+                      </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Confirmar password</label>
+                    <input #passwordConfirm type="password" class="form-control" formControlName="passwordconfirm" id=""
+                        minlength="8" maxlength="256" (keyup)="validarPassword()" placeholder="Confirmar password"
+                        maxlength="16" minlength="8">
+                    <span (click)="passwordConfirm.type=passwordConfirm.type=='password'?'text':'password'"
+                        class="fa fa-fw field-icon toggle-password"
+                        [ngClass]="(passwordConfirm.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                        <div class="info-pass">
+                          Se Requiere:Mínimo de 8 caracteres y máximo 16 caracteres, Al menos deberá incluir un carácter especial, una letra en mayúsculas y un dígito.
+                        </div>
+
+                    <div class="red-icon" *ngIf="PassNoValida && this.form.get('passwordconfirm')?.touched">Las
+                        Contraseñas No Coinciden</div>
+                    <div class="red-icon"
+                        *ngIf="this.form.get('passwordconfirm')?.invalid  && this.form.get('passwordconfirm')?.touched">
+                        Verificar Contraseña</div>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" formControlName="email" id="" placeholder="Email"
+                        maxlength="100">
+                        <div class="red-icon"
+                        *ngIf="this.form.get('email')?.invalid && this.form.get('email')?.touched">Verificar Email</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select class="form-control" formControlName="idrol">
+                        <option value="">Seleccione Rol</option>
+                        <option *ngFor="let row of listaRoles" value="{{row.idrol}}">
+                            {{row.tipo}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Numero de empleado</label>
+                    <input type="text" class="form-control" id="" (keyup)="validarNumeroEmpleado($event)"
+                    (keypress)="validacionNoCaracteresEspeciales($event)"
+                        formControlName="numempleado" placeholder="Numero de empleado" maxlength="30">
+                    <div class="red-icon" *ngIf="NoValido">Empleado No Valido {{idusauriouso}}</div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label>Operativo</label>
+                    <select class="form-control" formControlName="operativo">
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="listacorreo">
+                        <label class="form-check-label">Lista de correo</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label>Localidades</label>
+                    <select multiple="" class="form-control" formControlName="localidades">
+                        <option *ngFor="let row of localidades" value="{{row.idlocalidad}}">
+                            {{row.localidad}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.dismiss('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger" (click)="agregar()">Agregar</button>
+</div>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->

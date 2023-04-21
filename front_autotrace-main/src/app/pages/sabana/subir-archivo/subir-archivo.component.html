@@ -1,0 +1,43 @@
+<div style="background-color:transparent;">
+  <div class="opcionArchivo">
+    <div>
+      <div style="background-color:transparent;">
+        <label for="archivoExcel3" class="myButton">LC logistics</label>
+        <input type="file" id="archivoExcel3" (change)="leerArchivosExcel($event, 'LC logistics')" name="archivoExcel3"
+          accept=".xlsx, .xls" hidden>
+
+        <!-- <label for="archivoExcel1" class="myButton">Daily shipement</label>
+        <input type="file" id="archivoExcel1" (change)="leerArchivosExcel($event, 'Daily shipement')" name="archivoExcel1"
+          accept=".xlsx, .xls" hidden> -->
+
+        <label for="archivoExcel2" class="myButton">Gmm Total Inventory</label>
+        <input type="file" id="archivoExcel2" (change)="leerArchivosExcel($event, 'Gm')" name="archivoExcel2"
+          accept=".xlsx, .xls" hidden>
+      </div>
+    </div>
+  </div>
+  <div  class="opcionArchivo">
+    <label for="archivoTxt" class="myButton">.Dat</label>
+    <input type="file" id="archivoTxt" (change)="leerTxt($event, 'txt')" name="archivoTxt"
+      accept=".txt, .dat" hidden>
+  </div>
+
+  <button *ngIf="fileReady" class="up myButton" (click)="subirArchivos()">
+    Subir
+  </button>
+
+  <div class="contenedorFijo">
+    <div>
+      <table>
+        <tbody>
+          <tr *ngFor="let row of preview">
+            <td *ngFor="let cell of row">
+              {{cell}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" ></p></ngx-spinner>
+</div>

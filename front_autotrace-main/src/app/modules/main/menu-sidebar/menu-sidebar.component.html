@@ -1,0 +1,313 @@
+<!-- Sidebar -->
+<div class="sidebar sidebar-dark-danger">
+
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img src="assets/img/Logo3.png" class="brand-image img-circle">
+    </div>
+    <div class="info">
+      <a class="d-block">
+        <h5>AutoTrace</h5>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sidebar user (optional) -->
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img [src]="user.picture || 'assets/img/default-profile.png'" class="img-circle elevation-2" alt="User Image" />
+    </div>
+    <div class="info">
+      <a [routerLink]="['']" class="d-block">
+        {{ user.usuario }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <nav class="mt-2" style="overflow-y: hidden">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-item" *ngIf="checkPermission('Inicio')">
+        <a [routerLink]="['/']" class="nav-link">
+          <i class="nav-icon fas fa-home"></i>
+          <p class="color-texto">Inicio/Home</p>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="checkPermission('Inicio')">
+        <a [routerLink]="['/sabana']" class="nav-link">
+          <i class="nav-icon fas fa-file-upload"></i>
+          <p class="color-texto">Subir/Bajar reportes</p>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="checkPermission('Inicio')">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-map-marked-alt"></i>
+          <p class="color-texto">
+            Geolocalización
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" *ngIf="checkPermission('Mapa de distribucion')">
+          <li class="nav-item" >
+            <a routerLink="menu/geo-map-distribucion" class="nav-link">
+              <i class="fas fa-globe-americas nav-icon ml-2"></i>
+              <p class="color-texto">Mapa de distribución</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview" *ngIf="checkPermission('Historial')">
+          <li class="nav-item">
+            <a routerLink="/menu/geo-historial" class="nav-link">
+              <i class="fas fa-road nav-icon ml-2"></i>
+              <p class="color-texto">Historial</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item" *ngIf="checkPermission('Daños')">
+        <a href="#" class="nav-link">
+          <i class="fas fa-car-crash"></i>
+          <p class="ml-2 color-texto">
+            Daños
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: none;">
+          <li class="nav-item" *ngIf="checkPermission('Listado de daños')">
+            <a routerLink="menu/listado-danios" class="nav-link">
+              <i class="fas fa-clipboard-list nav-icon ml-2"></i>
+              <p class="color-texto">Listado de daños</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Grafica de daños')">
+            <a routerLink="menu/graficas-danios" class="nav-link">
+              <i class="fas fa-chart-bar nav-icon ml-2"></i>
+              <p class="color-texto">Graficas de daños</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Codigo de daños')">
+            <a routerLink="menu/codigos-danios" class="nav-link">
+              <i class="far fa-list-alt nav-icon ml-2"></i>
+              <p class="color-texto">Codigos de daños</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Inventarios')">
+        <a href="#" class="nav-link">
+          <i class="fas fa-boxes lg"></i>
+          <p class="ml-2 color-texto">
+            Inventarios
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: none;">
+          <li class="nav-item" *ngIf="checkPermission('Inventario en patio')">
+            <a routerLink="Inventarios/inventario-patio" class="nav-link">
+              <i class="fas fa-warehouse nav-icon ml-2"></i>
+              <p class="color-texto">Inventario en patio</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Inventario en transito')">
+            <a routerLink="Inventarios/inventario-transito" class="nav-link">
+              <i class="fas fa-shipping-fast nav-icon ml-2"></i>
+              <p class="color-texto">En transito</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Manifiesto')">
+        <a href="#" class="nav-link">
+          <i class="nav-icon far fa-file-alt ml-0"></i>
+          <p class="color-texto">
+            Manifiesto
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview ml-2" *ngIf="checkPermission('Subir manifiestos')">
+          <li class="nav-item">
+            <a routerLink="menu/subir-manifiesto" class="nav-link">
+              <i class="fas fa-file-upload ml-2"></i>
+              <p class="color-texto ml-2">Subir</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-treeview ml-2" *ngIf="checkPermission('Seguimiento de manifiestos')">
+          <li class="nav-item">
+            <a routerLink="menu/seguimiento-manifiesto" class="nav-link">
+              <i class="fas fa-walking ml-2"></i>
+              <p class="color-texto ml-2">Seguimiento</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Listas y Holds')">
+        <a href="#" class="nav-link">
+          <i class="fas fa-list lg"></i>
+          <p class="ml-2 color-texto">
+            Listas y Holds
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: none;">
+          <li class="nav-item" *ngIf="checkPermission('Listas')">
+            <a routerLink="listas-hold" class="nav-link">
+              <i class="fas fa-clipboard-list nav-icon ml-2"></i>
+              <p class="color-texto">Listas</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Alta de listas')">
+            <a routerLink="listas-hold/alta-lista" class="nav-link">
+              <i class="fas fa-file-upload nav-icon ml-2"></i>
+              <p class="color-texto">Alta lista</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Miscelaneos')">
+        <a href="#" class="nav-link">
+          <i class="far fa-folder-open lg"></i>
+          <p class="ml-2 color-texto">
+            Miscelaneos
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: none;">
+          <li class="nav-item" *ngIf="checkPermission('Vins a facturar')">
+            <a routerLink="miscelaneo/vin-facturar" class="nav-link">
+              <i class="fas fa-file-invoice-dollar nav-icon ml-2"></i>
+              <p class="color-texto">VINs a facturar</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Localidades')">
+            <a routerLink="miscelaneo/localidades" class="nav-link">
+              <i class="far fa-map nav-icon ml-2"></i>
+              <p class="color-texto">Localidades</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Usuarios')">
+            <a routerLink="miscelaneo/usuarios" class="nav-link">
+              <i class="fas fa-users nav-icon ml-2"></i>
+              <p class="color-texto">Usuarios</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Clientes')">
+            <a routerLink="miscelaneo/clientes" class="nav-link">
+              <i class="fas fa-user-tag nav-icon ml-2"></i>
+              <p class="color-texto">Clientes</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Proveedores')">
+            <a routerLink="miscelaneo/proveedores" class="nav-link">
+              <i class="fas fa-industry nav-icon ml-2"></i>
+              <p class="color-texto">Proveedores</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Decoder')">
+            <a routerLink="miscelaneo/decoder-db" class="nav-link">
+              <i class="fas fa-database nav-icon ml-2"></i>
+              <p class="color-texto">Decoder DB</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Inventario Manual/Etiquetas')">
+            <a routerLink="miscelaneo/miscelaneo-inventario" class="nav-link">
+              <i class="fas fa-dolly-flatbed nav-icon ml-2"></i>
+              <p class="color-texto">Inventario</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Tipo de inventario')">
+            <a routerLink="miscelaneo/tipo-inventario" class="nav-link">
+              <i class="fas fa-list nav-icon ml-2"></i>
+              <p class="color-texto">Tipo inventario</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Departamentos')">
+            <a routerLink="miscelaneo/departamentos" class="nav-link">
+              <i class="far fa-building nav-icon ml-2"></i>
+              <p class="color-texto">Departamentos</p>
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="checkPermission('Models')">
+            <a routerLink="miscelaneo/models" class="nav-link">
+              <i class="fab fa-modx nav-icon ml-2"></i>
+              <p class="color-texto">Models</p>
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="checkPermission('Imprimir VinXXX')">
+            <a routerLink="miscelaneo/miscelaneo-imprimir-vin" class="nav-link">
+              <i class="fas fa-print nav-icon ml-2"></i>
+              <p class="color-texto">Imprimir Vin</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Geocercas')">
+        <a routerLink="geocercas/geocercas" class="nav-link">
+          <i class="nav-icon fas fa-globe"></i>
+          <p class="color-texto">
+            Geocercas
+          </p>
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="checkPermission('Servicios')">
+        <a href="#" class="nav-link">
+          <i class="fas fa-concierge-bell nav-icon"></i>
+          <p class="color-texto">
+            Servicios
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: none;">
+          <li class="nav-item" *ngIf="checkPermission('Tipos de servicio')">
+            <a routerLink="servicios/servicios" class="nav-link">
+              <i class="fas fa-people-carry nav-icon ml-2"></i>
+              <p class="color-texto">Servicios</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Actividades')">
+            <a routerLink="servicios/servicios-actividades" class="nav-link">
+              <i class="fas fa-skating nav-icon ml-2"></i>
+              <p class="color-texto">Actividades</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Herramientas')">
+            <a routerLink="servicios/herramientas" class="nav-link">
+              <i class="fas fa-toolbox nav-icon ml-2"></i>
+              <p class="color-texto">Herramientas</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Empleados')">
+            <a routerLink="servicios/empleados" class="nav-link">
+              <i class="far fa-id-badge nav-icon ml-2"></i>
+              <p class="color-texto">Empleados</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Historial de tarifas')">
+            <a routerLink="servicios/historial-tarifas" class="nav-link">
+              <i class="fas fa-percent nav-icon ml-2"></i>
+              <p class="color-texto">Historial de tarifas</p>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="checkPermission('Reporte de servicios')">
+            <a routerLink="servicios/reporte-servicios" class="nav-link">
+              <i class="fas fa-file-invoice nav-icon ml-2"></i>
+              <p class="color-texto">Reportes de servicios</p>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+</div>

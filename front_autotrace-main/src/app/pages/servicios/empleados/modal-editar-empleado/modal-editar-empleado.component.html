@@ -1,0 +1,80 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="editar()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="">Clave</label>
+                    <input type="text" class="form-control" id=""
+                        maxlength="6"
+                        (keypress)="validacionNoCaracteresEspeciales($event)"
+                        formControlName="InputCveEmpleado" placeholder="Clave">
+                    <input type="hidden" formControlName="InputCveEmpleadoGuardado">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <select class="custom-select" (change)="verificarUsuarioLibre($event.target.value)" 
+                        required formControlName="InputSelectUsuario"
+                        id="InputSelectUsuario">
+                        <option value="">Seleccione Usuario</option>
+                        <option *ngFor="let usuario of listUsuarios" value="{{ usuario.idusuario }}">
+                            {{ usuario.usuario }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="ocupado">Usuario en uso</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" id="" required
+                        formControlName="InputNombreEmpleado" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="">Apellido paterno</label>
+                    <input type="text" class="form-control" id="" required formControlName="InputAPaterno"
+                        placeholder="Apellido paterno">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="">Apellido materno</label>
+                    <input type="text" class="form-control" id="" required
+                        formControlName="InputAMaterno" placeholder="Apellido materno">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label>Activo</label>
+                    <select class="form-control" formControlName="InputActivo">
+                        <option value="" selected>Seleccione una opcion</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="form-control" rows="3" minlength="1" required formControlName="InputDescripcion" maxlength="100"
+                        placeholder="Escribe una descripción/comentario"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+    </div>
+</form>

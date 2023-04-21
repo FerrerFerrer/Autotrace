@@ -1,0 +1,10 @@
+<app-header (toggleMenuSidebar)="toggleMenuSidebar()"></app-header>
+<app-menu-sidebar class="main-sidebar sidebar-dark-primary elevation-4"></app-menu-sidebar>
+
+<div class="wrapper">
+        <router-outlet></router-outlet>
+</div>
+
+<app-footer class="main-footer" style="background-color:#b20022 ;color: white;"></app-footer>
+<aside class="control-sidebar control-sidebar-dark"></aside>
+<div id="sidebar-overlay" (click)="toggleMenuSidebar()"></div>

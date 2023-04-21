@@ -1,0 +1,31 @@
+<div class="modal-header bg-danger">
+  <h4 class="modal-title">{{tituloModal}}</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+
+<div class="modal-body" id="mapadescargarDetalles" #mapadescargarDetalles>
+  <div class="modal-body row justify-content-center">
+    <h1 class="card-title font-weight-bold">Vin Code: {{vin}} </h1><br>
+  </div>
+
+  <div class="row card-body justify-content-center" id="descargarDetallesDanio" #descargarDetallesDanio>
+  </div>
+
+  <div class="card-body row">
+    <div id="map-modalDetalles" class="card-body">
+
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-footer justify-content-between">
+  <button type="button" class="btn btn-default" data-dismiss="modal"
+    (click)="activeModal.close('Close click')">Cerrar</button>
+
+  <button type="button" class="btn btn-default" data-dismiss="modal"
+    (click)="descargarDetalles()">Descargar(PDF)</button>
+</div>

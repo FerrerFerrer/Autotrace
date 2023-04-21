@@ -1,0 +1,326 @@
+<div class="content-wrapper big-image">
+
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <div class="form-inline">
+            <h1 class="m-0" style="color: white;">Inicio</h1>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" style="color: white;">
+    <div class="row">
+
+      <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7">
+        <div class="card component-transparent">
+          <div class="card-body">
+            <label for="exampleInputFile">Vins por geocerca</label>
+            <div class="row">
+              <div class="chartjs-size-monitor">
+                <div class="chartjs-size-monitor-expand">
+                  <div class=""></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink">
+                  <div class=""></div>
+                </div>
+              </div>
+              <canvas id="donutChart" class="canvas chartjs-render-monitor"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+        <div class="card component-transparent">
+          <div class="card-body">
+
+            <div class="col-sm-12">
+              <form [formGroup]="form">
+                <div class="form-group">
+                  <label for="exampleInputFile">Ingresos</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input formControlName="archivo" type="file" class="custom-file-input mt-3" id="archivoVin"
+                        (change)="onFileChange($event)" multiple="false">
+                      <label class="custom-file-label" for="achivoVin">Seleccionar archivo</label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-light mt-3" [disabled]="!Subir"
+                    (click)="validarVins()">Subir</button>
+                  <button class="btn btn-danger ml-2 mt-3" style="display: none;"
+                    (click)="cancelarArchivo()">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+
+        <!--Reproducir este codigo segun la cantidad de geocercas-->
+        <div class="col-sm-12 col-md-3 col-lg-2 col-lx-2" *ngFor="let sub of subtotal">
+          <div class="card bg-light">
+            <div class="row justify-content-center">
+              <div class="card-header text-bold">{{sub.geocerca}}</div>
+            </div>
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <h5 class="card-title">{{sub.total_vehiculos}} Vehiculos</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+
+    <div class="col-12">
+      <div class="card fondo-filtro">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+              <form [formGroup]="formBusqueda" role="form">
+                <div class="row">
+
+                  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input #inputEl class="form-check-input" type="checkbox" [(ngModel)]="isChecked"
+                          (change)="isChange(inputEl.checked)" id="inlineCheckbox1" formControlName="Historico">
+                        <label class="form-check-label">Historico</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-2">
+                    <div class="form-group">
+                      <label>Geocerca</label>
+                      <select class="form-control" formControlName="Geocerca">
+                        <option value="" selected>Seleccione una geocerca</option>
+                        <option *ngFor="let geocercas of geocercasList" value="{{geocercas.idgeocerca}}">
+                          {{geocercas.geocerca}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-2">
+                    <div class="form-group">
+                      <label for="InputTipoServicio">Buscar por tipo de servicio</label>
+                      <select class="form-control" formControlName="TipoServicio">
+                        <option value="" selected>Seleccione tipo de servicio</option>
+                        <option *ngFor="let tiposervicio of listTipoServicio" value="{{tiposervicio.tipoServicio}}">
+                          {{tiposervicio.tipoServicio}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group mt-0">
+                          <label class="col-form-label" for="inputSuccess">Fecha inicial</label>
+                          <input type="date" class="form-control" id="inputSuccess" placeholder=""
+                            formControlName="FechaInicial">
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="inputSuccess">Fecha final</label>
+                          <input type="date" class="form-control" id="inputSuccess" placeholder=""
+                            formControlName="FechaFinal">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display: none;">
+                    <div class="row">
+
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                          <button type="button" class="btn btn-block btn-danger"> <i class="fas fa-calendar-day"></i>
+                            Hoy</button>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                          <button type="button" class="btn  btn-block btn-danger"><i class="fas fa-calendar-week"></i> 7
+                            Dias</button>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                          <button type="button" class="btn  btn-block btn-danger"><i class="far fa-calendar"></i> 30
+                            Dias</button>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                        <div class="form-group">
+                          <button type="button" class="btn  btn-block btn-danger"><i class="far fa-calendar"></i>
+                            Todo</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+              <form [formGroup]="formListaVins">
+                <div class="form-group">
+                  <label>VINS</label>
+                  <textarea class="form-control" rows="3" formControlName="listaVinsBusqueda"
+                    placeholder="Escriba una lista separada por Enter"></textarea>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-lx-3 pb-3">
+          <button type="button" (click)="buscar()" class="btn btn-block bg-light">
+            <i class="fa fa-search mr-2"></i>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="content">
+
+    <div class="content" *ngIf="mostrarTabla">
+      <div class="container-fluid">
+        <div class="row mt-4">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header" style="background-color: gainsboro;">
+                <h3 class="card-title">Resultados de búsqueda</h3>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+
+                  <table [dtOptions]="dtOptions" datatable
+                    class="table table-striped table-bordered table-sm row-border hover" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">VIN Code</th>
+                        <th class="text-center">ModelId</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Mode</th>
+                        <th class="text-center">Fecha y Hora</th>
+                        <th class="text-center">Geocerca</th>
+                        <th class="text-center">Fila</th>
+                        <th class="text-center">Cajon</th>
+                        <th class="text-center">Tipo de Servicio</th>
+                        <th class="text-center">Estado</th>
+                        <th class="text-center">Fecha liberacion</th>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center"></th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let row of listResultBusqueda">
+                        <td class="text-center">
+                          {{row.id}}
+                        </td>
+                        <td class="text-left">
+                          {{row.vin}}
+                        </td>
+                        <td class="text-center">
+                          {{row.modelId}}
+                        </td>
+                        <td class="text-center">
+                          {{row.model}}
+                        </td>
+                        <td class="text-center">
+                          {{row.mode}}
+                        </td>
+                        <td class="text-center">
+                          {{row.fechaSalida | date:'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="text-center">
+                          {{row.geocerca}}
+                        </td>
+                        <td class="text-center">
+                          {{row.fila}}
+                        </td>
+                        <td class="text-center">
+                          {{row.cajon}}
+                        </td>
+                        <td class="text-center">
+                          {{row.tipoServicio}}
+                        </td>
+                        <td class="text-center">
+                          {{row.estado}}
+                        </td>
+                        <td class="text-center">1
+                          {{row.fechaLiberacion | date:'yyyy-MM-dd HH:mm:ss'}}
+                        </td>
+                        <td class="text-center">
+                          {{row.usuario}}
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-icon btn-3 btn-danger" (click)="abrirModalHistorialVin( row.vin)">
+                            <i class="fas fa-eye"></i></button>
+                        </td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" name="spinDashboardTabla" size="medium" color="#fff"
+      type="ball-spin-clockwise" [fullScreen]="false">
+      <p style="color: white"> </p>
+    </ngx-spinner>
+  </section>
+</div>
+
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-pulse" [fullScreen] = "true"> <ngb-progressbar type="success" [value]="25">
+  25
+</ngb-progressbar></ngx-spinner> -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+  <p style="color: white"> {{cantidadProcesados}}</p>
+  <!-- {{cantidadProcesados}} -->
+</ngx-spinner>

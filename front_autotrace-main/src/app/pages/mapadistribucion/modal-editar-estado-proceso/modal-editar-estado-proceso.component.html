@@ -1,0 +1,28 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+
+<form [formGroup]="form">
+<div class="modal-body">
+    <div class="form-group">
+        <label>Estado proceso</label>
+        <select class="form-control" formControlName="estadoProceso">
+            <option value="" selected>Seleccione una opción</option>
+            <option *ngFor="let row of estadoProceso"
+            value="{{row.idestadoProceso}}" >   {{row.estadoProceso}} </option>
+        </select>
+    </div>
+</div>
+</form>
+
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+    <button type="button" class="btn btn-danger" (click)="editar()">Guardar cambios</button>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-pulse" [fullScreen] = "true"> <ngb-progressbar type="success" [value]="">
+</ngb-progressbar></ngx-spinner>

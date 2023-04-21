@@ -1,0 +1,14 @@
+.big-image {
+    margin: 0; 
+    background:  linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(165, 165, 165, 0.469)
+      ),url("/assets/img/Geolocalizacion.jpg") ;
+   
+    background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+    background-position: center center;  
+}
+    
+

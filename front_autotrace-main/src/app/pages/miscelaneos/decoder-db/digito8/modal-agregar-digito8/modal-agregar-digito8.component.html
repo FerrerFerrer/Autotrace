@@ -1,0 +1,50 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="agregar()">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="">Dígito</label>
+            <input type="text" class="form-control" formControlName="InputDigito" id="" placeholder="Dígito"
+            (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="20">
+        </div>
+        <div class="form-group">
+            <label for="">Motor</label>
+            <input type="text" class="form-control" formControlName="InputMotor" id="" placeholder="Motor"
+            (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="">Cylinders</label>
+            <input type="text" class="form-control" formControlName="InputCylinders" id="" placeholder="Cylinders"
+            (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="">Fuel</label>
+            <input type="text" class="form-control" formControlName="InputFuel" id="" placeholder="Fuel"
+            (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="">Turbo</label>
+            <select name="" id="" formControlName="InputTurbo" class="form-control">
+                <option value="" selected="selected" disabled>Seleccione Turbo</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Sales Code</label>
+            <input type="text" class="form-control" formControlName="InputSalesCode" id="" placeholder="Sales Code"
+            (keypress)="validacionNoCaracteresEspeciales($event)" maxlength="100">
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Agregar</button>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->

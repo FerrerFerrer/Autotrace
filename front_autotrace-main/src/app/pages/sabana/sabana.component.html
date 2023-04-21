@@ -1,0 +1,50 @@
+
+<div class="content-wrapper big-image">
+  <div class="sabana">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0" style="color: white;">
+              Reportes
+            </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item">
+                <a href="" style="color: white;">Inicio</a>
+              </li>
+              <li class="breadcrumb-item active" style="color: whitesmoke;">Reportes</li>
+            </ol>
+          </div>
+          <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" name="spinMapaDistribucion" color="#fff"
+            type="ball-spin-clockwise" [fullScreen]="false">
+            <p style="color: white"></p>
+          </ngx-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section>
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <div class="p-2 bd-highlight">
+        <button class="cybr-btn opcion" (click)="openRequisitos()">Formatos</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="optionButton">
+      <button class="cybr-btn opcion" (click)="reporte()"><span aria-hidden>Crear reporte</span></button>
+      <button class="cybr-btn opcion" (click)="archivos()"><span aria-hidden>Subir archivos</span></button>
+    </div>
+
+    <div *ngIf="optionsButton.crear" class="optionButton">
+      <button class="descargar" (click)="peticiones()"><strong>Descargar reporte</strong></button>
+    </div>
+
+    <div *ngIf="optionsButton.subir" class="optionButton">
+      <app-subir-archivo></app-subir-archivo>
+    </div>
+  </section>
+</div>

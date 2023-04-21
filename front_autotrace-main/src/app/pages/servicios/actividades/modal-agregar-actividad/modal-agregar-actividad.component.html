@@ -1,0 +1,119 @@
+<form [formGroup]="form" (ngSubmit)="agregar()">
+    <div class="modal-header bg-danger">
+        <h4 class="modal-title">{{tituloModal}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Clave</label>
+                    <input type="text" formControlName="InputClave" class="form-control" id="" placeholder="Codigo"
+                    (keypress)=" quitarCaracteresEspecialesNoEspacios($event)" maxlength="30"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" formControlName="InputNombre" class="form-control" id="" placeholder="Nombre"
+                    (keypress)=" quitarCaracteresEspecialesNoEspacios($event)" maxlength="100"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Descripcion</label>
+                    <input type="text" formControlName="InputDescripcion" class="form-control" id="" placeholder="Nombre"
+                    (keypress)=" quitarCaracteresEspecialesNoEspacios($event)" maxlength="100">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label>Herramienta</label>
+                    <select class="form-control" formControlName="InputHerramienta">
+                        <option value="" selected>Seleccione una herramienta</option>
+                        <option *ngFor="let herramienta of listaHerramientas" value="{{herramienta.cveHerramienta}}">
+							{{herramienta.nombre}}
+						</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                    <label>Empleados</label>
+                    <select multiple="" class="form-control" formControlName="InputEmpleados">
+                        <option value="" selected>Seleccione empleado</option>
+                        <option *ngFor="let empleado of listaEmpleados" value="{{empleado.cveEmpleado}}">
+							{{empleado.nombre}}
+						</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Tarifa</label>
+                    <input type="number" class="form-control" formControlName="InputTarifa"
+                        placeholder="Tarifa" step="0.01" min="0.0">
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">advertencia</label>
+                    <input type="text" class="form-control" formControlName="InputAdvertencia" id="" placeholder="Advertencia"
+                    (keypress)="  quitarCaracteresEspecialesNoEspacios($event)" maxlength="200"
+                    >
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for=""></label>
+                    <div class="form-check">
+                        <input #inputEl class="form-check-input" type="checkbox"
+                            [(ngModel)]="isChecked"
+                            (change)="isChange(inputEl.checked)"
+                            id="inlineCheckbox1"
+                            formControlName="InputInput">
+                        <label class="form-check-label" for="inlineCheckbox1">Input</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select class="form-control" formControlName="InputCliente">
+                        <option value="" selected>Seleccione un cliente</option>
+                        <option *ngFor="let cliente of listClientes" value="{{cliente.idcliente}}">
+							{{cliente.cliente}}
+						</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    <label for="">Activo</label>
+                    <select class="form-control" formControlName="InputActivo">
+                        <option value="" selected>Seleccione una opcion</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+            (click)="activeModal.close('Close click')">Cerrar</button>
+        <button type="submit" class="btn btn-danger">Agregar</button>
+    </div>
+</form>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->

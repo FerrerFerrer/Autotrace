@@ -1,0 +1,27 @@
+<div class="modal-header bg-danger">
+  <h4 class="modal-title">{{tituloModal}}</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+
+<form [formGroup]="form">
+<div class="modal-body">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Clave</label>
+    <input type="email" class="form-control"  formControlName="claveAreaDanio" id="exampleInputEmail1" placeholder="Escribe la clave">
+    <input type="hidden" formControlName="claveAreaDanioGuardado">
+  </div>
+  <div class="form-group">
+    <label>Descripción</label>
+    <textarea class="form-control" rows="3" formControlName="descripcion" placeholder="Escribe una descripción"></textarea>
+  </div>
+
+</div>
+<div class="modal-footer justify-content-between">
+  <button type="button" class="btn btn-default" data-dismiss="modal"
+    (click)="activeModal.close('Close click')">Cerrar</button>
+  <button type="button" class="btn bg-danger" (click)="editarArea()">Guardar cambios</button>
+</div>
+</form>

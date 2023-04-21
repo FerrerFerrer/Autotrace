@@ -1,0 +1,211 @@
+<div class="content-wrapper big-image">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0" style="color: white">Subir manifiesto</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="" style="color: white">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="" style="color: whitesmoke">Manifiestos</a>
+                        </li>
+                        <li class="breadcrumb-item active" style="color: whitesmoke">
+                            Subir manifiesto
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="col-sm-12">
+            <form [formGroup]="formSubirManifiesto" (ngSubmit)="validarVins()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputSuccess">Buque</label>
+                                    <input type="text" class="form-control" id="inputSuccess" formControlName="Buque"
+                                        placeholder="Buque o referencia a madrina" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputSuccess">Viaje</label>
+                                    <input type="text" class="form-control" id="inputSuccess" formControlName="Viaje"
+                                        placeholder="Número asignado de viaje" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputSuccess">Fecha del buque</label>
+                                    <input type="date" class="form-control" id="inputSuccess"
+                                        formControlName="FechaBuque" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label>Marca</label>
+                                    <select class="form-control">
+                                        <option value="">Seleccione marca</option>
+                                        <option *ngFor="let cliente of listClientes" value="{{ cliente.idCliente }}">
+                                            {{ cliente.cliente }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label>Manifiestos (Abiertos)</label>
+                                    <select class="form-control">
+                                        <option value="">Seleccione manifiesto</option>
+                                        <option *ngFor="let manifiesto of listManifiestosExistentes"
+                                            value="{{ manifiesto.idmanifiesto }}">
+                                            {{manifiesto.manifiesto}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label for="customFile">Archivo manifiesto</label>
+                                    <div class="custom-file">
+                                        <input formControlName="archivo" type="file" class="custom-file-input"
+                                            id="customFile" (change)="onFileChange($event)" multiple="false">
+                                        <label class="custom-file-label" for="customFile">Archivo manifiesto
+                                            (CSV)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-lx-3 pb-3">
+                                <button type="submit" class="btn btn-block bg-teal color-palette"
+                                    [disabled]="this.formSubirManifiesto.invalid">
+                                    <i class="fas fa-file-upload mr-2"></i>Subir
+                                </button>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-lx-3 pb-3">
+                                <button type="button" class="btn btn-block bg-gradient-danger"
+                                    (click)="cancelarSubida()">
+                                    <i class="far fa-window-close mr-2"></i>Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="content mt-2">
+        <div class="container-fluid">
+            <div class="row" *ngIf="mostrarTablaProcesados">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: gainsboro;">
+                            <h3 class="card-title">Resumen VINS Procesados</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptions"
+                                    class="table table-striped table-bordered table-sm row-border hover"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Vin Code</th>
+                                            <th class="text-center">Model</th>
+                                            <th class="text-center">Nomenclature</th>
+                                            <th class="text-center">Weight Kgs</th>
+                                            <th class="text-center">Planto of origin</th>
+                                            <th class="text-center">LOC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of tablaAlmacenados">
+                                            <td>
+                                                {{row.id}}
+                                            </td>
+                                            <td>
+                                                {{row.vin}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{row.model}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{row.Nomenclature}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{row.WeightKGS}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{row.PlantofOrigin}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{row.LOC}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row" *ngIf="mostrarTablaNoProcesados">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header bg-gradient-danger">
+                            <h3 class="card-title">
+                                Resumen VINS No Procesados
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table datatable [dtOptions]="dtOptions2"
+                                    class="table table-striped table-bordered table-sm row-border hover"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Vin Code</th>
+                                            <th>Error</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let row of tablaNoAlmacenados" >
+                                        <td>{{row.id}}</td>
+                                        <td>
+                                            {{row.vin}}
+                                        </td>
+                                        <td>
+                                            {{row.validacion}}
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

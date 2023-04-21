@@ -1,0 +1,302 @@
+<div class="content-wrapper big-image">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0" style="color: white;">Graficas de daños</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="" style="color: white;">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active" style="color: white;">Graficas de daños</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <form [formGroup]="form" (ngSubmit)="buscar()" role="form">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label>Fechas de inicio:</label>
+                                    <input type="date" formControlName="FechaInicial" class="form-control float-right"
+                                        id="">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                                <div class="form-group">
+                                    <label>Fecha Fin</label>
+                                    <input type="date" formControlName="FechaFinal" class="form-control float-right"
+                                        id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-lx-3 pb-3">
+                        <button type="submit" class="btn btn-block bg-light"> <i
+                                class="fa fa-search mr-2"></i>Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="content">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                Indicadores de daños: Clasificación
+                            </h3>
+                        </div>
+                        <div class="card-body" *ngIf="mostrarGraficaClasificacion">
+                            <app-line-chart [lineChartData]="lineChartData" [titulo]="tituloClasificacion"></app-line-chart>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <div class="row justify-content-end">
+                                <button class="btn btn-secondary" type="button" (click)="exportarGraficaClasificacion()">
+                                    <i class="fas fa-file-pdf"></i> Exportar gráfica
+                                </button>
+                            </div> -->
+
+                            <div class="row mt-2" *ngIf="mostrarTablaClasificacion">
+                                <div class="table-responsive">
+                                    <table datatable [dtOptions]="dtOptions"
+                                        class="table table-striped table-bordered table-sm row-border hover"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Filtro</th>
+                                                <th class="text-center">Ene</th>
+                                                <th class="text-center">Feb</th>
+                                                <th class="text-center">Mar</th>
+                                                <th class="text-center">Abr</th>
+                                                <th class="text-center">May</th>
+                                                <th class="text-center">Jun</th>
+                                                <th class="text-center">Jul</th>
+                                                <th class="text-center">Ago</th>
+                                                <th class="text-center">Sep</th>
+                                                <th class="text-center">Oct</th>
+                                                <th class="text-center">Nov</th>
+                                                <th class="text-center">Dic</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of datosClasificacionDanioOrigen">
+                                                <td>Daño Origen</td>
+                                                <td class="text-center">{{row.enero}}</td>
+                                                <td class="text-center">{{row.febrero}}</td>
+                                                <td class="text-center">{{row.marzo}}</td>
+                                                <td class="text-center">{{row.abril}}</td>
+                                                <td class="text-center">{{row.mayo}}</td>
+                                                <td class="text-center">{{row.junio}}</td>
+                                                <td class="text-center">{{row.julio}}</td>
+                                                <td class="text-center">{{row.agosto}}</td>
+                                                <td class="text-center">{{row.septiembre}}</td>
+                                                <td class="text-center">{{row.octubre}}</td>
+                                                <td class="text-center">{{row.noviembre}}</td>
+                                                <td class="text-center">{{row.diciembre}}</td>
+                                            </tr>
+                                            <tr *ngFor="let row of datosClasificacionIncidente">
+                                                <td>Incidente</td>
+                                                <td class="text-center">{{row.enero}}</td>
+                                                <td class="text-center">{{row.febrero}}</td>
+                                                <td class="text-center">{{row.marzo}}</td>
+                                                <td class="text-center">{{row.abril}}</td>
+                                                <td class="text-center">{{row.mayo}}</td>
+                                                <td class="text-center">{{row.junio}}</td>
+                                                <td class="text-center">{{row.julio}}</td>
+                                                <td class="text-center">{{row.agosto}}</td>
+                                                <td class="text-center">{{row.septiembre}}</td>
+                                                <td class="text-center">{{row.octubre}}</td>
+                                                <td class="text-center">{{row.noviembre}}</td>
+                                                <td class="text-center">{{row.diciembre}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                Indicadores de daños: Status
+                            </h3>
+                        </div>
+                        <div class="card-body" *ngIf="mostrarGraficaEstatus">
+                            <app-line-chart [lineChartData]="lineChartDataStatus" [titulo]="tituloEstatus"></app-line-chart>
+                        </div>
+                        <div class="card-footer">
+                            <!-- <div class="row justify-content-end">
+                                <button class="btn btn-secondary" type="button" (click)="exportarGraficaEstatus()">
+                                    <i class="fas fa-file-pdf"></i> Exportar gráfica
+                                </button>
+                            </div> -->
+
+                            <div class="row mt-2" *ngIf="mostrarTablaEstatus">
+                                <div class="table-responsive">
+                                    <table datatable [dtOptions]="dtOptions"
+                                        class="table table-striped table-bordered table-sm row-border hover"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Filtro</th>
+                                                <th class="text-center">Ene</th>
+                                                <th class="text-center">Feb</th>
+                                                <th class="text-center">Mar</th>
+                                                <th class="text-center">Abr</th>
+                                                <th class="text-center">May</th>
+                                                <th class="text-center">Jun</th>
+                                                <th class="text-center">Jul</th>
+                                                <th class="text-center">Ago</th>
+                                                <th class="text-center">Sep</th>
+                                                <th class="text-center">Oct</th>
+                                                <th class="text-center">Nov</th>
+                                                <th class="text-center">Dic</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of datosClasificacionEstatus">
+                                                <td>{{row.descripcion}}</td>
+                                                <td class="text-center">{{row.enero}}</td>
+                                                <td class="text-center">{{row.febrero}}</td>
+                                                <td class="text-center">{{row.marzo}}</td>
+                                                <td class="text-center">{{row.abril}}</td>
+                                                <td class="text-center">{{row.mayo}}</td>
+                                                <td class="text-center">{{row.junio}}</td>
+                                                <td class="text-center">{{row.julio}}</td>
+                                                <td class="text-center">{{row.agosto}}</td>
+                                                <td class="text-center">{{row.septiembre}}</td>
+                                                <td class="text-center">{{row.octubre}}</td>
+                                                <td class="text-center">{{row.noviembre}}</td>
+                                                <td class="text-center">{{row.diciembre}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 mt-2">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Laboratorio
+                                    </h3>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-2">
+                                    <select class="form-control" (change)="onChange($event)">
+                                        <option value="">Seleccione un filtro</option>
+                                        <option value="1">Área</option>
+                                        <option value="2">Área Adicional</option>
+                                        <option value="3">Marca/cliente</option>
+                                        <option value="4">Responsable</option>
+                                        <option value="5">Severidad</option>
+                                        <option value="6">Tipo</option>
+                                        <option value="7">Tipo de reparación</option>
+                                        <option value="8">Ubicación</option>
+                                        <!--
+                                        <option value="9">Días en reparación</option>
+                                        <option value="10">Días con daño</option>
+                                        -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngIf="mostrarGraficaLaboratorio">
+                            <app-line-chart [lineChartData]="lineChartDataLaboratorio" [titulo]="tituloLaboratorio" style="height: 1000px;"></app-line-chart>
+                        </div>
+
+                        <div class="card-footer">
+                            <!-- <div class="row justify-content-end">
+                                <a class="btn btn-secondary">
+                                    <i class="fas fa-file-pdf" type="button"></i> Exportar gráfica
+                                </a>
+                            </div> -->
+
+                            <div class="row mt-2" *ngIf="mostrarTablaLaboratorio">
+                                <div class="table-responsive">
+                                    <table datatable [dtOptions]="dtOptions"
+                                        class="table table-striped table-bordered table-sm row-border hover"
+                                        style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Filtro</th>
+                                                <th class="text-center">Ene</th>
+                                                <th class="text-center">Feb</th>
+                                                <th class="text-center">Mar</th>
+                                                <th class="text-center">Abr</th>
+                                                <th class="text-center">May</th>
+                                                <th class="text-center">Jun</th>
+                                                <th class="text-center">Jul</th>
+                                                <th class="text-center">Ago</th>
+                                                <th class="text-center">Sep</th>
+                                                <th class="text-center">Oct</th>
+                                                <th class="text-center">Nov</th>
+                                                <th class="text-center">Dic</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of datosLaboratorio">
+                                                <td>{{row.descripcion}}</td>
+                                                <td class="text-center">{{row.enero}}</td>
+                                                <td class="text-center">{{row.febrero}}</td>
+                                                <td class="text-center">{{row.marzo}}</td>
+                                                <td class="text-center">{{row.abril}}</td>
+                                                <td class="text-center">{{row.mayo}}</td>
+                                                <td class="text-center">{{row.junio}}</td>
+                                                <td class="text-center">{{row.julio}}</td>
+                                                <td class="text-center">{{row.agosto}}</td>
+                                                <td class="text-center">{{row.septiembre}}</td>
+                                                <td class="text-center">{{row.octubre}}</td>
+                                                <td class="text-center">{{row.noviembre}}</td>
+                                                <td class="text-center">{{row.diciembre}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "false"><p style="color: white" > </p></ngx-spinner>
+</div>

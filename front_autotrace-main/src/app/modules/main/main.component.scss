@@ -1,0 +1,8 @@
+
+.content-wrapper > *:first-child {
+    display: block;
+}
+
+[class*=sidebar-dark-] {
+    background-color: #b20022;
+}

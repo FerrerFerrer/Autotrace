@@ -1,0 +1,68 @@
+<div class="modal-header bg-danger">
+    <h4 class="modal-title">{{tituloModal}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body row">
+                  <div id="map-modal-editar" classs="" style="width: 100%; height: 500px;" class="card-body contextmenu">
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <div class="card">
+              <form [formGroup]="form" role="form" >
+                <div class="card-header" style="background-color: gainsboro;">
+                    <h3 class="card-title">Formulario para editar</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="">Codigo</label>
+                                <input type="text" formControlName="codigo" class="form-control" id="" placeholder="Codigo" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="">Descripcion</label>
+                                <input type="text" formControlName="descripcion" class="form-control" id="" placeholder="Descripcion" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label>Localidades</label>
+                                <select class="form-control" formControlName="localidad">
+                                  <option disabled selected>Seleccione una opción</option>
+                                  <option *ngFor="let row of listLocalidades" value="{{row.idlocalidad}}">
+                                    {{row.localidad}}
+                                  </option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal"
+        (click)="activeModal.close('Close click')">Cerrar</button>
+    <button type="submit" class="btn btn-danger" (click)="editar()">Editar</button>
+</div>
+<ngx-spinner></ngx-spinner> <!--Componente spinner-->
